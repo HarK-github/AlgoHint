@@ -4,12 +4,19 @@
  # AlgoHint: Codeforces & LeetCode AI Hint Generator
 
 
-**A browser extension and local AI backend that generates progressive, rubric-enforced hints for competitive programming problems**
-  
+**A browser extension for competitive programming enthusiasts that generates progressive, rubric-enforced hints for competitive programming problems**
+
+
+Visit for more info: https://algohint-web.vercel.app/
+
+
 </div>
 
 ---
 
+<div align="center">
+  <img src="image-1.png" alt="AlgoHint Screenshot" width="200" style="border-radius: 8px;">
+</div>
 ## Table of Contents
 
 - [Overview](#overview)
@@ -52,32 +59,29 @@ AlgoHint is a privacy-first, offline-capable hint generation system designed for
 
 <div align="center">
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                        Browser Extension                       │
-│  ┌──────────────┐    ┌──────────────┐    ┌─────────────────┐ │
-│  │  Shadow DOM  │    │  LeetCode    │    │  Codeforces     │ │
-│  │  Hint        │    │  GraphQL     │    │  Tutorial       │ │
-│  │  Sidebar     │◄───┤  Fetcher     │    │  Extractor      │ │
-│  └──────────────┘    └──────────────┘    └─────────────────┘ │
-└────────────────────────────┬────────────────────────────────────┘
-                             │ HTTP
-                             ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                      FastAPI Server                           │
-│  ┌──────────────────────────────────────────────────────────┐  │
-│  │                    LangGraph Pipeline                    │  │
-│  │  ┌─────────┐    ┌─────────┐    ┌─────────┐    ┌───────┐│  │
-│  │  │  Input  │───►│  Hint   │───►│ Safety  │───►│Output ││  │
-│  │  │  Node   │    │  Gen    │    │  Guard  │    │ Node  ││  │
-│  │  └─────────┘    └─────────┘    └─────────┘    └───────┘│  │
-│  └────────────────────────┬───────────────────────────────────┘  │
-│                           │                                     │
-│                           ▼                                     │
-│  ┌──────────────────────────────────────────────────────────┐  │
-│  │              Ollama (qwen2.5:0.5b)                      │  │
-│  └──────────────────────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph Browser Extension
+        direction LR
+        A[Shadow DOM Hint Sidebar]
+        B[LeetCode GraphQL Fetcher]
+        C[Codeforces Tutorial Extractor]
+        B --> A
+        C --> A
+    end
+
+    subgraph FastAPI Server
+        direction TB
+        subgraph LangGraph Pipeline
+            D[Input Node] --> E[Hint Gen]
+            E --> F[Safety Guard]
+            F --> G[Output Node]
+        end
+        B -. HTTP .-> D
+        C -. HTTP .-> D
+        E <--> H[(Ollama qwen2.5:0.5b)]
+        F <--> H
+    end
 ```
 
 </div>

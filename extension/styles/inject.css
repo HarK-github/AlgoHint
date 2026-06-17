@@ -1,0 +1,296 @@
+:host {
+    /* Define variables used by mockup */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --color-text-tertiary: #666;
+    all: initial; /* Reset everything inside shadow DOM */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); }
+
+.hint-sidebar {
+    width: 320px;
+    min-height: 520px;
+    background: #0f0f10;
+    border-radius: 12px;
+    border: 0.5px solid rgba(255,255,255,0.08);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999999;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    color: #e8e8e8;
+    font-family: var(--font-sans);
+}
+
+/* TOP BAR */
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border-bottom: 0.5px solid rgba(255,255,255,0.07);
+    background: #151515;
+}
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.brand-icon {
+    width: 22px;
+    height: 22px;
+    background: #7F77DD;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+}
+.brand-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: #e8e8e8;
+}
+.top-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.dot-green { background: #1D9E75; }
+.dot-amber { background: #EF9F27; box-shadow: 0 0 0 3px rgba(239,159,39,0.15); }
+.dot-red { background: #E24B4A; }
+.status-label {
+    font-size: 11px;
+    color: #888;
+}
+
+/* CONTEXT CARD */
+.context-card {
+    margin: 12px 12px 0;
+    background: rgba(255,255,255,0.04);
+    border: 0.5px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 10px 12px;
+    cursor: pointer;
+}
+.context-card:hover { background: rgba(255,255,255,0.06); }
+.context-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.context-meta {
+    font-size: 11px;
+    color: #888;
+}
+.context-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: #e8e8e8;
+    margin-top: 3px;
+}
+.context-badge {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    background: rgba(29,158,117,0.15);
+    color: #1D9E75;
+    font-weight: 500;
+}
+.context-badge.medium { background: rgba(239,159,39,0.15); color: #EF9F27; }
+.context-badge.hard { background: rgba(226,75,74,0.15); color: #E24B4A; }
+
+/* HINT LEVEL PILLS */
+.hint-level-row {
+    display: flex;
+    gap: 6px;
+    padding: 12px 12px 0;
+}
+.level-pill {
+    flex: 1;
+    border: 0.5px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 5px 0;
+    text-align: center;
+    font-size: 11px;
+    color: #888;
+    cursor: pointer;
+    background: none;
+    transition: all 0.15s;
+    position: relative;
+}
+.level-pill.active {
+    background: rgba(127,119,221,0.18);
+    border-color: #7F77DD;
+    color: #AFA9EC;
+    font-weight: 500;
+}
+.level-pill:hover:not(.active) { border-color: rgba(255,255,255,0.2); color: #bbb; }
+
+/* HINT ZONE */
+.hint-zone {
+    flex: 1;
+    padding: 14px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+}
+
+/* GET HINT BUTTON */
+.get-hint-btn {
+    width: 100%;
+    padding: 11px;
+    background: #7F77DD;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    transition: background 0.15s;
+}
+.get-hint-btn:hover { background: #6E66CC; }
+
+/* HINT CARD */
+.hint-card {
+    background: rgba(255,255,255,0.04);
+    border: 0.5px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 12px;
+}
+.hint-card-label {
+    font-size: 10px;
+    color: #7F77DD;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+.hint-text {
+    font-size: 13px;
+    color: #c8c8c8;
+    line-height: 1.65;
+}
+.cursor-blink {
+    display: inline-block;
+    width: 2px;
+    height: 13px;
+    background: #7F77DD;
+    vertical-align: middle;
+    margin-left: 1px;
+    animation: blink 1s step-end infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+/* DOWNLOAD SCREEN */
+.download-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 16px;
+    gap: 16px;
+}
+.progress-ring-wrap {
+    position: relative;
+    width: 110px;
+    height: 110px;
+}
+.progress-ring-wrap svg { transform: rotate(-90deg); }
+.progress-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.progress-pct {
+    font-size: 22px;
+    font-weight: 500;
+    color: #e8e8e8;
+}
+.progress-unit {
+    font-size: 10px;
+    color: #666;
+}
+.dl-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #e8e8e8;
+    text-align: center;
+}
+.dl-sub {
+    font-size: 12px;
+    color: #888;
+    text-align: center;
+    line-height: 1.6;
+}
+
+/* ERROR SCREEN */
+.error-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 16px;
+    gap: 14px;
+    text-align: center;
+}
+.error-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #E24B4A;
+}
+.error-sub {
+    font-size: 12px;
+    color: #888;
+    line-height: 1.65;
+}
+
+/* BOTTOM BAR */
+.bottom-bar {
+    border-top: 0.5px solid rgba(255,255,255,0.07);
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.bottom-tip {
+    font-size: 10px;
+    color: #666;
+}
+
+/* LeetCode Badges */
+.platform-badge.lc {
+  background: rgba(255, 161, 22, 0.12);
+  color: #ffa116;   /* LeetCode orange */
+  border: 0.5px solid rgba(255, 161, 22, 0.25);
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.difficulty-badge.easy   { color: #1D9E75; background: rgba(29,158,117,0.15); font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 500; }
+.difficulty-badge.medium { color: #ffa116; background: rgba(255, 161, 22, 0.15); font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 500; }
+.difficulty-badge.hard   { color: #E24B4A; background: rgba(226,75,74,0.15); font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 500; }

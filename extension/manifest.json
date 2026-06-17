@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "AlgoHint",
+  "version": "1.0",
+  "description": "Get progressive, rubric-enforced AI hints for Codeforces and LeetCode problems.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "offscreen"
+  ],
+  "host_permissions": [
+    "*://*.codeforces.com/*",
+    "*://*.leetcode.com/*",
+    "http://127.0.0.1:8000/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "AlgoHint"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://codeforces.com/blog/entry/*", "*://codeforces.com/contest/*/tutorial*"],
+      "js": ["content_scripts/scanner.js"]
+    },
+    {
+      "matches": [
+        "*://codeforces.com/contest/*/problem/*", 
+        "*://codeforces.com/problemset/problem/*",
+        "*://leetcode.com/problems/*"
+      ],
+      "js": ["content_scripts/leetcode/graphql.js", "content_scripts/injector.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["styles/inject.css"],
+      "matches": ["*://*.codeforces.com/*", "*://*.leetcode.com/*"]
+    }
+  ]
+}

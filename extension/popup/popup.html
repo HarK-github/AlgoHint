@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AlgoHint</title>
+    <link rel="stylesheet" href="popup.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="brand">
+            <div class="brand-icon"><i class="ti ti-brain" style="font-size:14px;color:#fff;"></i></div>
+            <span class="brand-name">AlgoHint Options</span>
+        </div>
+    </div>
+    
+    <div class="container">
+        <p id="status-text">Navigate to a tutorial page to scan it.</p>
+        
+        <div id="preview-container" class="hidden">
+            <strong>Preview:</strong>
+            <div id="preview-text"></div>
+        </div>
+
+        <button id="scan-btn" class="primary-btn"><i class="ti ti-scan" style="font-size: 15px;"></i> Extract Page</button>
+        <button id="store-btn" class="primary-btn hidden"><i class="ti ti-device-floppy" style="font-size: 15px;"></i> Store Tutorial</button>
+        
+        <div id="error-msg" class="error hidden"></div>
+        
+        <div class="divider"></div>
+        
+        <div class="settings-group">
+            <div class="settings-title">Inference Backend</div>
+            <label class="radio-label">
+                <input type="radio" name="backend" value="server" checked>
+                <div class="radio-content">
+                    <span class="radio-title">Local Server</span>
+                    <span class="radio-desc">Uses Python FastApi backend</span>
+                </div>
+            </label>
+            <label class="radio-label disabled-label">
+                <input type="radio" name="backend" value="webgpu" disabled>
+                <div class="radio-content">
+                    <span class="radio-title">WebGPU (Experimental) <i class="ti ti-lock" style="font-size:12px;"></i></span>
+                    <span class="radio-desc">Runs fully in-browser (CSP Error)</span>
+                </div>
+            </label>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>
