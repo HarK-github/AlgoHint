@@ -4,4 +4,4 @@ __pycache__/
 *.pyc
 out.log
 all_hints_output.json
-*.png
+ 
